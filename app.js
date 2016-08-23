@@ -19,34 +19,53 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
 };
-
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-var player = function(x, y) {
-  this.x = x;
-  this.y = y;
-  this.sprite = 'images/char-boy.png';
-};
-
-player.prototype.update = function(dt) {
-  this.x = this.x;
-  this.y = this.y;
-
-};
-
-player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
 var Enemy1= new Enemy(400,220,10);
 var Enemy2= new Enemy(200,140,70);
 var Enemy3= new Enemy(100,60,40);
 var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
+// Draw the enemy on the screen, required method for game
+Enemy.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+var Player = function(x,y){
+  this.x = x;
+  this.y = y;
+
+  this.sprite = 'images/char-boy.png';
+};
+// This class requires an update(), render() and
+// a handleInput() method.
+
+Player.prototype.update = function(dt){
+  this.dt = dt;
+};
+
+Player.prototype.render = function(){
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Player.handleInput = function(direction){
+
+  if(direction === 'left'){
+ this.x -= 100;
+ }
+ if(direction === 'up'){
+ this.y -= 82.5;
+ }
+ if(direction === 'right'){
+ this.x += 100;
+ }
+ if(direction === 'down'){
+ this.y += 82.5;
+ }
+ };
+
+// Now instantiate your objects.
+// Place all enemy objects in an array called allEnemies
+
+// Place the player object in a variable called player
+
+var player = new Player(200,400);
 
 
 // This listens for key presses and sends the keys to your
@@ -58,7 +77,5 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-
-    player.handleInput(allowedKeys[e.keyCode]);
+    player.prototype.handleInput(allowedKeys[e.keyCode]);
 });
-var player = new player(250,350);
