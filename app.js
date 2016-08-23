@@ -20,25 +20,22 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
-var player = function() {
-  
-  // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/char-boy.png';
+var player = function(x, y) {
+  this.x = x;
+  this.y = y;
+  this.sprite = 'images/char-boy.png';
 };
-player.update = function(dt) {
+
+player.prototype.update = function(dt) {
+  this.x = this.x;
+  this.y = this.y;
 
 };
-player.render = function() {
+
+player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-}
-
+};
+var player = new player();
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
