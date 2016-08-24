@@ -1,21 +1,28 @@
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
-  this.x = x;
-  this.y = y;
-  this.speed = speed;
+
   // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
+
     this.sprite = 'images/enemy-bug.png';
+    this.x = 0;
+    this.y =230 * Math.random();
+    this.speed = 10 + Math.random() * 200;
+    this.speed = this.getspeed();
+    return this;
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-  this.x = this.x;
-  this.y = this.y;
+  this.x = this.x + this.speed * dt;
+      if (this.x > 600){
+          this.x = 0;
+         }
+         return;
   // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -24,6 +31,19 @@ Enemy.prototype.update = function(dt) {
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
+};
+Enemy.prototype.getspeed = function(){
+var random = Math.random() + .05;
+if (Math.floor(random)< 1)
+   {
+     return 3;
+   }
+   else
+   {
+      return 6;
+   }
+
 };
 var Player = function(x,y, speed){
   this.x = x;
@@ -35,7 +55,7 @@ var Player = function(x,y, speed){
 // a handleInput() method.
 
 Player.prototype.update = function(dt){
-  this.x * (dt);
+this.x * (dt);
 this.y * (dt);
 };
 
@@ -43,7 +63,7 @@ Player.prototype.render = function(){
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.handleInput = function(direction){
+Player.prototype.handleInput = function(direction){
 
   if(direction === 'left'){
  this.x -= 100;
@@ -79,8 +99,8 @@ document.addEventListener('keyup', function(e) {
         39: 'right',
         40: 'down'
     };
-    player.prototype.handleInput(allowedKeys[e.keyCode]);
-})
+    Player.prototype.handleInput(allowedKeys[e.keyCode]);
+});
 //code I need to reconsider
 ///var allEnemies = [];
 //for (var i = 0; i < 3; i++) {
