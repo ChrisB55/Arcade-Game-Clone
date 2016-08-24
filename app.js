@@ -48,7 +48,7 @@ if (Math.floor(random)< 1)
 var Enemy1= new Enemy(400,220,[100]);
 var Enemy2= new Enemy(200,140,[100]);
 var Enemy3= new Enemy(100,60,[100]);
-var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
+var allEnemies = [Enemy1, Enemy2, Enemy3];
 
 var Player = function(x, y) {
   this.x = x;
@@ -77,7 +77,7 @@ Player.prototype.collision = function() {
   for (var i = 0; i < allEnemies.length; i++) {
     if (collision(this, allEnemies[i])) {
       this.reset();
-      break;
+      return;
     }
   }
 };
@@ -111,7 +111,7 @@ Player.prototype.handleInput = function (keyCode) {
     if (this.y < 400) {
       this.y += 85;
     }
-    break;
+    return;
   }
 
 };
