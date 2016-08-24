@@ -45,68 +45,86 @@ if (Math.floor(random)< 1)
    }
 
 };
-var Player = function(x,y, speed){
-  this.x = x;
-  this.y = y;
-  this.speed = speed;
-  this.sprite = 'images/char-boy.png';
-};
-// This class requires an update(), render() and
-// a handleInput() method.
 
-Player.prototype.update = function(dt){
-this.x * (dt);
-this.y * (dt);
-};
-
-Player.prototype.render = function(){
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-Player.prototype.handleInput = function(direction){
-
-  if(direction === 'left'){
- this.x -= 100;
- }
- if(direction === 'up'){
- this.y -= 82.5;
- }
- if(direction === 'right'){
- this.x += 100;
- }
- if(direction === 'down'){
- this.y += 82.5;
- }
- };
-
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
 var Enemy1= new Enemy(400,220,[100]);
 var Enemy2= new Enemy(200,140,[100]);
 var Enemy3= new Enemy(100,60,[100]);
 var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
-// Place the player object in a variable called player
 
-var player = new Player(200,400);
+var Player = function(x, y) {
+  this.x = x;
+  this.y = y;
+  this.sprite = "images/char-boy.png";
+}
+
+Player.prototype.render = function() {
+  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Player.prototype.reset = function() {
+  this.x = 200;
+  this.y = 400;
+
+};
+
+var collision = function(a, b) {
+  return (a.x < (b.x + 50) &&
+          (a.x + 50) > b.x &&
+          a.y < (b.y + 30) &&
+          (a.y + 30) > b.y);
+};
+
+Player.prototype.collision = function() {
+  for (var i = 0; i < allEnemies.length; i++) {
+    if (collision(this, allEnemies[i])) {
+      this.reset();
+      break;
+    }
+  }
+};
 
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
-    var allowedKeys = {
-        37: 'left',
-        38: 'up',
-        39: 'right',
-        40: 'down'
-    };
-    Player.prototype.handleInput(allowedKeys[e.keyCode]);
+Player.prototype.update = function() {
+  if (this.y <= 40) {
+    this.reset();
+  }
+  this.collision();
+};
+
+Player.prototype.handleInput = function (keyCode) {
+  switch (keyCode) {
+  case 'left':
+    if (this.x > 0) {
+      this.x -= 101;
+    }
+    break;
+  case 'right':
+    if (this.x < 400) {
+      this.x += 101;
+    }
+    break;
+  case 'up':
+    if (this.y > 0) {
+      this.y -= 85;
+    }
+    break;
+  case 'down':
+    if (this.y < 400) {
+      this.y += 85;
+    }
+    break;
+  }
+
+};
+
+var player = new Player(200, 400);
+
+document.addEventListener('keyup', function (e) {
+  var allowedKeys = {
+    37: 'left',
+    38: 'up',
+    39: 'right',
+    40: 'down'
+  };
+  player.handleInput(allowedKeys[e.keyCode]);
 });
-//code I need to reconsider
-///var allEnemies = [];
-//for (var i = 0; i < 3; i++) {
-    ///allEnemies.push (new Enemy());
-//};
-
-///
-//var keyPressed = allowedKeys[e.keyCode];
-//});
