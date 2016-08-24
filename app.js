@@ -11,7 +11,6 @@ var Enemy = function(x, y, speed) {
     this.x = 0;
     this.y =230 * Math.random();
     this.speed = 10 + Math.random() * 200;
-    this.speed = this.getspeed();
     return this;
 };
 
