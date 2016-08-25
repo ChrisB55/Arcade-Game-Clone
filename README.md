@@ -1,6 +1,16 @@
-frontend-nanodegree-arcade-game
-===============================
+Frogger Game Clone README 
+===============================================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## What is this game?
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+*   It's a clone of the 80s arcade game frogger. This is a bare bones version of the game’s functionality, built to demonstrate how object oriented javascript can be used in computer gaming programs. 
+
+## How do I get the game to run?
+
+*   You should download all the files in github repository (https://github.com/ChrisB55/frontend-nanodegree-arcade-game-master) on to your local computer. 
+*   Open the file index.html with your browser. You should see a playing area with a character and three bugs scrolling across the upper screen. 
+
+## How do I start playing?
+
+*   Begin by pressing the arrow directional keys on your keyboard. Your character will move up, down, left and right. 
+*   Try to get the character to the top of the screen without touching the bugs. If you touch the bugs while moving the character the game resets. 
