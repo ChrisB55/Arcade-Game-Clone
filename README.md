@@ -7,7 +7,7 @@ Frogger Game Clone README
 
 ## How do I get the game to run?
 
-*   You should download all the files in github repository (https://github.com/ChrisB55/frontend-nanodegree-arcade-game-master) on to your local computer. 
+*   You should download all the files in github repository (https://chrisb55.github.io/Arcade-Game-Clone/) on to your local computer. 
 *   Open the file index.html with your browser. You should see a playing area with a character and three bugs scrolling across the upper screen. 
 
 ## How do I start playing?
